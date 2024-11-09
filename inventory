@@ -1,0 +1,2 @@
+[harbortest]
+harbortest ansible_host=10.1.1.208 ansible_user=siadmin ansible_become=true 

@@ -1,0 +1,3 @@
+roles:
+  - src: nickjj.docker
+    version: v2.5.0

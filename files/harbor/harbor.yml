@@ -1,0 +1,70 @@
+hostname: harbortest.terminal.lft
+
+http:
+  port: 80
+
+https:
+  port: 443
+  certificate: /etc/ssl/private/terminal.lft.pem
+  private_key: /etc/ssl/private/terminal.lft.key
+
+harbor_admin_password: 1234567890
+
+database:
+  password: 1234567890
+  max_idle_conns: 100
+  max_open_conns: 900
+  conn_max_lifetime: 5mS
+  conn_max_idle_time: 0
+
+data_volume: /opt/data/harbor
+
+trivy:
+  ignore_unfixed: false
+  skip_update: false
+  skip_java_db_update: false
+  offline_scan: false
+  security_check: vuln
+  insecure: true
+  timeout: 5m0s
+
+jobservice:
+  max_job_workers: 10
+  job_loggers:
+    - STD_OUTPUT
+    - FILE
+  logger_sweeper_duration: 1
+
+notification:
+  webhook_job_max_retry: 10
+  webhook_job_http_client_timeout: 3
+
+chart:
+  absolute_url: disabled
+
+log:
+  level: info
+  local:
+    rotate_count: 50
+    rotate_size: 200M
+    location: /var/log/harbor
+
+_version: 2.11.0
+
+uaa:
+  ca_file: /etc/ssl/private/terminal.lft.pem
+
+metric:
+  enabled: true
+  port: 9090
+  path: /metrics
+
+upload_purging:
+  enabled: true
+  age: 168h
+  interval: 6h
+  dryrun: false
+
+cache:
+  enabled: false
+  expire_hours: 24
